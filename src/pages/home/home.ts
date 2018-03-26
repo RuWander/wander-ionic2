@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 
 import { LoginPage } from "../login/login";
-import { SignupPage } from "../signup/signup";
+import {AngularFireAuth} from "angularfire2/auth";
 
 @Component({
   selector: 'page-home',
@@ -10,16 +10,19 @@ import { SignupPage } from "../signup/signup";
 })
 export class HomePage {
 
-  constructor(public navCtrl: NavController) {
+  constructor(private fireAuth: AngularFireAuth, public navCtrl: NavController) {
+    fireAuth.authState.subscribe(user => {
+      if(!user) {
+        navCtrl.push(LoginPage);
+        return;
+      }
+    })
 
   }
+
 
   signIn(){
     this.navCtrl.push(LoginPage)
-  }
-
-  signUp(){
-      this.navCtrl.push(SignupPage)
   }
 
   dropExperience(){
@@ -36,6 +39,11 @@ export class HomePage {
 
   dropInnovation(){
     console.log('You Dropped an Innovation')
+  }
+
+  signOut() {
+    console.log('you are being signed out')
+      this.fireAuth.auth.signOut();
   }
 
 }

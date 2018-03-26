@@ -1,6 +1,7 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>Home</ion-title>
+  <ion-navbar hideBackButton>
+    <ion-title float-left><h1>Wander</h1></ion-title>
+    <button float-right ion-button (click)="signOut()">Sign Out</button>
   </ion-navbar>
 </ion-header>
 
@@ -17,6 +18,5 @@
     </ion-fab-list>
   </ion-fab>
 
-  <button ion-button (click)="signIn()">Sign In</button>
-  <button ion-button (click)="signUp()">Sign Up</button>
+
 </ion-content>
