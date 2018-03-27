@@ -10,12 +10,14 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { LoginPage } from "../pages/login/login";
 import { SignupPage} from "../pages/signup/signup";
 import { ProfilePage } from "../pages/profile/profile";
+import { QuestionDropPage } from "../pages/question-drop/question-drop";
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import {AngularFireModule} from "angularfire2";
 import {AngularFireAuthModule} from "angularfire2/auth";
 import {AngularFireDatabaseModule} from "angularfire2/database";
+import {AngularFireStorageModule} from "angularfire2/storage";
 
 const firebaseAuth = {
     apiKey: "AIzaSyBbhrW64iuPdIt5EgAkle5Y2iyFU3C4KGE",
@@ -36,14 +38,16 @@ const firebaseAuth = {
     TabsPage,
     LoginPage,
     SignupPage,
-    ProfilePage
+    ProfilePage,
+    QuestionDropPage
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(firebaseAuth),
     AngularFireAuthModule,
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
+    AngularFireStorageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -54,7 +58,8 @@ const firebaseAuth = {
     TabsPage,
     LoginPage,
     SignupPage,
-    ProfilePage
+    ProfilePage,
+    QuestionDropPage
   ],
   providers: [
     StatusBar,

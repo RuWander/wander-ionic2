@@ -5,8 +5,11 @@ import { ToastController } from "ionic-angular";
 import { LoginPage } from "../login/login";
 import {AngularFireAuth} from "angularfire2/auth";
 import {AngularFireDatabase} from "angularfire2/database";
-import {FirebaseObjectObservable} from "angularfire2/database-deprecated";
 import {Profile} from "../../models/profile";
+import {FirebaseObjectObservable} from "angularfire2/database";
+
+import {QuestionDropPage} from "../question-drop/question-drop";
+
 
 @Component({
   selector: 'page-home',
@@ -14,7 +17,7 @@ import {Profile} from "../../models/profile";
 })
 export class HomePage {
 
-  profileData: FirebaseObjectObservable<Profile>;
+  profileData: FirebaseObject<Profile>;
 
   constructor(private afAuth: AngularFireAuth, private afDatabase: AngularFireDatabase, public navCtrl: NavController, private toast: ToastController) {
 
@@ -48,7 +51,8 @@ export class HomePage {
   }
 
   dropQusetion(){
-    console.log('You Dropped some Knowledge')
+    console.log('You are dropping a Question');
+    this.navCtrl.push(QuestionDropPage);
   }
 
   dropInnovation(){
@@ -57,7 +61,7 @@ export class HomePage {
 
   signOut() {
     console.log('you are being signed out')
-      this.fireAuth.auth.signOut();
+      this.afAuth.auth.signOut();
       this.navCtrl.setRoot(LoginPage);
   }
 

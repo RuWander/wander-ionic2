@@ -1,6 +1,4 @@
 
-
-
 export interface Profile {
     username: string;
     experienceDrop: string[];
