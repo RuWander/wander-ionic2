@@ -14,10 +14,11 @@ import { QuestionDropPage } from "../pages/question-drop/question-drop";
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import {AngularFireModule} from "angularfire2";
-import {AngularFireAuthModule} from "angularfire2/auth";
-import {AngularFireDatabaseModule} from "angularfire2/database";
-import {AngularFireStorageModule} from "angularfire2/storage";
+import { AngularFireModule } from "angularfire2";
+import { AngularFireAuthModule } from "angularfire2/auth";
+import { AngularFireDatabaseModule } from "angularfire2/database";
+import { AngularFireStorageModule } from "angularfire2/storage";
+import { Geolocation } from "@ionic-native/geolocation";
 
 const firebaseAuth = {
     apiKey: "AIzaSyBbhrW64iuPdIt5EgAkle5Y2iyFU3C4KGE",
@@ -47,7 +48,8 @@ const firebaseAuth = {
     AngularFireModule.initializeApp(firebaseAuth),
     AngularFireAuthModule,
     AngularFireDatabaseModule,
-    AngularFireStorageModule
+    AngularFireStorageModule,
+    //Geolocation
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -64,7 +66,8 @@ const firebaseAuth = {
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    Geolocation
   ]
 })
 export class AppModule {}

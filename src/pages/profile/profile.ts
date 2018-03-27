@@ -25,6 +25,7 @@ export class ProfilePage {
   }
 
   createProfile(){
+
     console.log(this.profile);
     this.afAuth.authState.take(1).subscribe(auth => {
       this.afDataBase.object(`profiles/${auth.uid}`).set(this.profile)

@@ -6,7 +6,7 @@ import { LoginPage } from "../login/login";
 import {AngularFireAuth} from "angularfire2/auth";
 import {AngularFireDatabase} from "angularfire2/database";
 import {Profile} from "../../models/profile";
-import {FirebaseObjectObservable} from "angularfire2/database";
+import {FirebaseObject} from "angularfire2/database";
 
 import {QuestionDropPage} from "../question-drop/question-drop";
 
@@ -16,7 +16,7 @@ import {QuestionDropPage} from "../question-drop/question-drop";
   templateUrl: 'home.html'
 })
 export class HomePage {
-
+//FirebaseObject<Profile>;
   profileData: FirebaseObject<Profile>;
 
   constructor(private afAuth: AngularFireAuth, private afDatabase: AngularFireDatabase, public navCtrl: NavController, private toast: ToastController) {
@@ -27,15 +27,15 @@ export class HomePage {
     console.log('the home page loaded');
     this.afAuth.authState.take(1).subscribe(data => {
         if(data && data.email && data.uid){
-            this.toast.create({
-                message: `Welcome To Wander ${data.email}`,
-                duration:3000
-            }).present();
+            // this.toast.create({
+            //     message: `Welcome To Wander ${data.email}`,
+            //     duration:1000
+            // }).present();
             this.profileData = this.afDatabase.object(`profiles/${data.uid}`);
         }else{
             this.toast.create({
                 message: `Could not find authentication details.`,
-                duration:3000
+                duration:1000
             }).present();
         }
     });
