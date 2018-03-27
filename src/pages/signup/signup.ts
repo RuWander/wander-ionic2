@@ -1,7 +1,8 @@
-import {Component, ViewChild} from '@angular/core';
+import {Component} from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {AngularFireAuth} from "angularfire2/auth";
 import {HomePage} from "../home/home";
+import {User} from "../../models/user";
 
 /**
  * Generated class for the SignupPage page.
@@ -16,26 +17,22 @@ import {HomePage} from "../home/home";
   templateUrl: 'signup.html',
 })
 export class SignupPage {
-    @ViewChild('username') username;
-    @ViewChild('password') password;
+
+    user = {} as User;
 
   constructor(private fireAuth: AngularFireAuth, public navCtrl: NavController, public navParams: NavParams) {
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad SignupPage');
-  }
-
-  signUp(){
-    console.log('attemptinf to create user...');
-    this.fireAuth.auth.createUserWithEmailAndPassword(this.username.value, this.password.value)
-        .then(data =>{
-          console.log('Got data ',data);
-          this.navCtrl.push(HomePage)
-        })
-        .catch(error =>{
-          console.log('got error', error)
-        })
+  async signUp(user: User){
+    console.log('attempting to create user...');
+    try {
+        const result = await this.fireAuth.auth.createUserWithEmailAndPassword(user.email, user.password);
+        console.log(result);
+        this.navCtrl.setRoot(HomePage);
+    }
+    catch(e){
+          console.log('got error', e)
+    }
   }
 
 }

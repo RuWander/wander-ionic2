@@ -11,19 +11,13 @@ import {AngularFireAuth} from "angularfire2/auth";
 export class HomePage {
 
   constructor(private fireAuth: AngularFireAuth, public navCtrl: NavController) {
-    fireAuth.authState.subscribe(user => {
-      if(!user) {
-        navCtrl.push(LoginPage);
-        return;
-      }
-    })
 
   }
 
 
-  signIn(){
-    this.navCtrl.push(LoginPage)
-  }
+  // signIn(){
+  //   this.navCtrl.push(LoginPage)
+  // }
 
   dropExperience(){
     console.log('You Dropped an Experience')
@@ -44,6 +38,7 @@ export class HomePage {
   signOut() {
     console.log('you are being signed out')
       this.fireAuth.auth.signOut();
+      this.navCtrl.setRoot(LoginPage);
   }
 
 }

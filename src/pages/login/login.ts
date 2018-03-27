@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import {ViewChild} from "@angular/core";
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {AngularFireAuth} from "angularfire2/auth";
 import {SignupPage} from "../signup/signup";
 import {HomePage} from "../home/home";
+import {User} from "../../models/user";
 
 /**
  * Generated class for the LoginPage page.
@@ -19,26 +19,27 @@ import {HomePage} from "../home/home";
 })
 export class LoginPage {
 
-  @ViewChild('username') username;
-  @ViewChild('password') password;
+    user = {} as User;
 
   constructor(private fire: AngularFireAuth, public navCtrl: NavController, public navParams: NavParams) {
   }
 
-  signIn(){
-    this.fire.auth.signInWithEmailAndPassword(this.username.value, this.password.value)
-        .then(data => {
-          console.log('got some data ' , data);
-          this.navCtrl.push(HomePage);
-        })
-        .catch(error => {
-          console.log('got an error ' , error)
-        })
+  async signIn(user: User){
+      console.log('Attempting to login');
+      try {
+          const result = await this.fire.auth.signInWithEmailAndPassword(user.email, user.password);
+
+          console.log('got some data ' , result);
+          this.navCtrl.setRoot(HomePage);
+      }
+      catch(e) {
+          console.log('got an error ' , e)
+      }
 
   }
 
     signUp(){
-        this.navCtrl.push(SignupPage)
+        this.navCtrl.push(SignupPage);
     }
 
 }

@@ -17,7 +17,7 @@ import {AngularFireAuthModule} from "angularfire2/auth";
 
 const firebaseAuth = {
     apiKey: "AIzaSyBbhrW64iuPdIt5EgAkle5Y2iyFU3C4KGE",
-        authDomain: "wanderbase-9613f.firebaseapp.com",
+    authDomain: "wanderbase-9613f.firebaseapp.com",
     databaseURL: "https://wanderbase-9613f.firebaseio.com",
     projectId: "wanderbase-9613f",
     storageBucket: "wanderbase-9613f.appspot.com",

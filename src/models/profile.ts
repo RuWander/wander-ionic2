@@ -3,9 +3,9 @@
 
 export interface Profile {
     username: string;
-    experienceDrop: any;
-    knowledgeDrop: any;
-    innovationDrop: any;
-    questionDrop: any;
-    tags: any;
+    experienceDrop: string[];
+    knowledgeDrop: string[];
+    innovationDrop: string[];
+    questionDrop: string[];
+    tags: string[];
 }

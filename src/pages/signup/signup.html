@@ -14,21 +14,24 @@
 
 
 <ion-content padding>
+  <br>
 
-  <h1>Wander</h1>
+  <h1 text-center>Wander</h1>
 
   <ion-list>
 
     <ion-item>
       <ion-label floating>Username</ion-label>
-      <ion-input type="text" value="" #username></ion-input>
+      <ion-input type="text" [(ngModel)]="user.email"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label floating>Password</ion-label>
-      <ion-input type="password" #password></ion-input>
+      <ion-input type="password" [(ngModel)]="user.password" ></ion-input>
     </ion-item>
-    <button block ion-button (click)="signUp()">Sign In</button>
+    <br>
+    <br>
+    <button block ion-button (click)="signUp(user)">Sign Up</button>
 
   </ion-list>
 
