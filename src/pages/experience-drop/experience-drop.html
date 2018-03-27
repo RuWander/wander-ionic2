@@ -14,5 +14,16 @@
 
 
 <ion-content padding>
+  <ion-list>
+    <ion-item>
+      <ion-label color="primary" stacked="">Title of Your Experience</ion-label>
+      <ion-input [(ngModel)]="drop.title" type="text" placeholder="Question Here"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label color="primary" stacked>Write a short description</ion-label>
+      <ion-textarea [(ngModel)]="drop.description" placeholder="Write a short description"></ion-textarea>
+    </ion-item>
+  </ion-list>
+  <button block ion-button (click)="experienceDrop()">Drop Question</button>
 
 </ion-content>

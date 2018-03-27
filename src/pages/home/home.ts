@@ -9,6 +9,7 @@ import {Profile} from "../../models/profile";
 import {FirebaseObject} from "angularfire2/database";
 
 import {QuestionDropPage} from "../question-drop/question-drop";
+import {ExperienceDropPage} from "../experience-drop/experience-drop";
 
 
 @Component({
@@ -44,6 +45,7 @@ export class HomePage {
 
   dropExperience(){
     console.log('You Dropped an Experience')
+      this.navCtrl.push(ExperienceDropPage);
   }
 
   dropKnowledge(){
