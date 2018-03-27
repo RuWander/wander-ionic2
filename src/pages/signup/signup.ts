@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {AngularFireAuth} from "angularfire2/auth";
 import {HomePage} from "../home/home";
 import {User} from "../../models/user";
+import {ProfilePage} from "../profile/profile";
 
 /**
  * Generated class for the SignupPage page.
@@ -28,7 +29,7 @@ export class SignupPage {
     try {
         const result = await this.fireAuth.auth.createUserWithEmailAndPassword(user.email, user.password);
         console.log(result);
-        this.navCtrl.setRoot(HomePage);
+        this.navCtrl.setRoot(ProfilePage);
     }
     catch(e){
           console.log('got error', e)
