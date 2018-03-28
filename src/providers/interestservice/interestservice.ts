@@ -11,22 +11,41 @@ import {UserInterests} from "../../models/interests";
 @Injectable()
 export class InterestserviceProvider {
 
-  private interest: UserInterests[] = [
-      {interest: 'Architecture'},
-      {interest: 'Culture'},
-      {interest: 'Art'},
-      {interest: 'Streets'},
-      {interest: 'Music'},
-      {interest: 'Pubs'}
+  private interests:[] = [
+      'Architecture', 'Culture','Art', 'Streets', 'Music', 'Pubs'
+
+      // {interest: 'Architecture'},
+      // {interest: 'Culture'},
+      // {interest: 'Art'},
+      // {interest: 'Streets'},
+      // {interest: 'Music'},
+      // {interest: 'Pubs'}
 
   ];
+
+  private userInterest: [] = [];
 
   constructor() {
     console.log('Hello InterestserviceProvider Provider');
   }
 
   getInterest(){
-    return this.interest;
+    return this.interests;
+  }
+
+  getUserInterests(){
+      return this.userInterest;
+  }
+
+  addToUserInterest(item: UserInterests){
+      if(this.userInterest.indexOf(item) != -1){
+          return;
+      }
+      this.userInterest.push(item);
+  }
+
+  removeFromUserInterest(item){
+      this.userInterest.splice(this.userInterest.indexOf(item), 1)
   }
 
 }

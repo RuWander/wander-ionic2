@@ -26,12 +26,23 @@
     </ion-card-header>
 
     <ion-list>
-      <button ion-item *ngFor="let item of interest">
-        <ion-icon name="cart" item-start></ion-icon>
-        Shopping
+      <button ion-item *ngFor="let item of interests" (click)="addToUserInterest(item)">
+        <ion-icon name="checkbox-outline" item-start ></ion-icon>
+        {{item}}
       </button>
     </ion-list>
+
   </ion-card>
+
+  <h2>Your Interests</h2>
+
+  <ion-chip *ngFor="let item of userInterests">
+    <ion-label>{{item}}</ion-label>
+    <button ion-button clear color="light" (click)="removeUserInterst()">
+      <ion-icon name="close-circle"></ion-icon>
+    </button>
+  </ion-chip>
+
 
   <button ion-button clear block (click)="createProfile()">Create</button>
 

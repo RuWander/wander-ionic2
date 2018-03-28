@@ -20,7 +20,8 @@ import {InterestserviceProvider} from "../../providers/interestservice/interests
 })
 export class ProfilePage {
 
-  interest = [];
+  interests = [];
+  userInterests = [];
 
   profile = {} as Profile;
 
@@ -28,12 +29,26 @@ export class ProfilePage {
   }
 
   ionViewWillLoad(){
-    this.interest = this.interestService.getInterest();
-    console.log(this.interest)
+    this.interests = this.interestService.getInterest();
+    console.log(this.interests);
+    this.userInterests = this.interestService.getUserInterests();
+  }
+
+  addToUserInterest(item){
+    console.log('add to user interest');
+      this.interestService.addToUserInterest(item);
+  }
+
+  removeUserInterst(item){
+    this.interestService.removeFromUserInterest(item);
   }
 
   createProfile(){
-
+    // for(let i = 0; i < this.userInterests.length; i++){
+    //     let userInt = this.profile.tags;
+    //     userInt.push(this.userInterests[i].interest);
+    // }
+    this.profile.tags = this.userInterests;
     console.log(this.profile);
     this.afAuth.authState.take(1).subscribe(auth => {
       this.afDataBase.object(`profiles/${auth.uid}`).set(this.profile)

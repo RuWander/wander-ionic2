@@ -11,6 +11,7 @@ import {FirebaseListObservable, FirebaseObjectObservable} from "angularfire2/dat
 import {QuestionDropPage} from "../question-drop/question-drop";
 import {ExperienceDropPage} from "../experience-drop/experience-drop";
 import {Observable} from "rxjs/Observable";
+import {ProfilePage} from "../profile/profile";
 
 
 @Component({
@@ -81,5 +82,9 @@ export class HomePage {
       this.afAuth.auth.signOut();
       this.navCtrl.setRoot(LoginPage);
   }
+    gotoProfile() {console.log('you are being signed out')
+        this.afAuth.auth.signOut();
+        this.navCtrl.push(ProfilePage);
+    }
 
 }
