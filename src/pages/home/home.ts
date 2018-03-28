@@ -4,7 +4,7 @@ import { ToastController } from "ionic-angular";
 
 import { LoginPage } from "../login/login";
 import {AngularFireAuth} from "angularfire2/auth";
-import {AngularFireDatabase} from "angularfire2/database";
+import {AngularFireDatabase} from "angularfire2/database-deprecated";
 import {Profile} from "../../models/profile";
 import {FirebaseListObservable, FirebaseObjectObservable} from "angularfire2/database-deprecated";
 
@@ -12,6 +12,8 @@ import {QuestionDropPage} from "../question-drop/question-drop";
 import {ExperienceDropPage} from "../experience-drop/experience-drop";
 import {Observable} from "rxjs/Observable";
 import {ProfilePage} from "../profile/profile";
+import {ExperiencedropProvider} from "../../providers/experiencedrop/experiencedrop";
+
 
 
 @Component({
@@ -19,34 +21,14 @@ import {ProfilePage} from "../profile/profile";
   templateUrl: 'home.html'
 })
 export class HomePage {
-//FirebaseObject<Profile>;
-
-    private drops: any[] = [
-        {lat:-25.8127794,lng:28.122059499999998},
-        {lat:-25.1127794,lng:28.222059499999998},
-        {lat:-25.2127794,lng:28.322059499999998},
-        {lat:-25.3127794,lng:28.422059499999998},
-        {lat:-25.4127794,lng:28.522059499999998},
-        {lat:-25.5127794,lng:28.622059499999998},
-        {lat:-25.6127794,lng:28.722059499999998}
-
-    ];
-
-
     lat: number = -25.8127794;
     lng: number = 28.322059499999998;
-  profileData: FirebaseObjectObservable<Profile>;
-  //profileD = {} as Object;
+    profileData: FirebaseObjectObservable<Profile>;
     profileItems: Observable<any>;
+    experiencedDrops: FirebaseListObservable<any[]>;
+    questionDrops: FirebaseListObservable<any[]>;
 
-  constructor(private afAuth: AngularFireAuth, private afDatabase: AngularFireDatabase, public navCtrl: NavController, private toast: ToastController) {
-      //this.afAuth.authState.take(1).subscribe(data => {
-          // if(data && data.email && data.uid) {
-          //     console.log(data.uid);
-          //     this.profileItems = afDatabase.object(`profiles/${data.uid}`);
-          //     console.log('this is profileItems');
-          //     console.log(this.profileItems)
-          // }});
+  constructor(private experienceProvider: ExperiencedropProvider,private afAuth: AngularFireAuth, private afDatabase: AngularFireDatabase, public navCtrl: NavController, private toast: ToastController) {
 
   };
 
@@ -54,15 +36,11 @@ export class HomePage {
     console.log('the home page loaded');
     this.afAuth.authState.take(1).subscribe(data => {
         if(data && data.email && data.uid){
-            // this.toast.create({
-            //     message: `Welcome To Wander ${data.email}`,
-            //     duration:1000
-            // }).present();
-            //this.profileD = this.afDatabase.object(`profiles/${data.uid}`);
-            //console.log(profileD);
 
-            let profileItems = this.afDatabase.object(`profiles/${data.uid}`);
-            console.log(profileItems);
+            let profileIs = this.afDatabase.object(`profiles/${data.uid}`).subscribe(x => {
+                console.log(x);
+                this.profileItems = x;
+            })
 
         }else{
             this.toast.create({
@@ -72,6 +50,15 @@ export class HomePage {
         }
     });
 
+    //this.items = this.experienceProvider.getAllExperiences();
+      let items = this.afDatabase.list('/experiencedrops').subscribe(x => {
+          console.log(x);
+          this.experiencedDrops = x;
+      });
+      let items2 = this.afDatabase.list('/questiondrops').subscribe(x => {
+          console.log(x);
+          this.questionDrops = x;
+      });
   }
 
   dropExperience(){

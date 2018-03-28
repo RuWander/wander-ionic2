@@ -3,15 +3,9 @@ import {IonicPage, NavController, NavParams, ToastController} from 'ionic-angula
 import { QuestionDrop } from "../../models/questionDrop";
 import { AngularFireAuth } from "angularfire2/auth";
 import { Geolocation } from "@ionic-native/geolocation";
-import { AngularFireDatabase } from "angularfire2/database";
+import { AngularFireDatabase } from "angularfire2/database-deprecated";
 import {HomePage} from "../home/home";
 
-/**
- * Generated class for the QuestionDropPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({

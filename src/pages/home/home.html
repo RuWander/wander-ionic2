@@ -2,15 +2,37 @@
   <ion-navbar>
     <ion-title float-left><h1>Wander</h1></ion-title>
     <button float-right ion-button (click)="signOut()">Sign Out</button>
-    <button float-right ion-button (click)="gotoProfile()">Profile</button>
+    <!--<button float-right ion-button (click)="gotoProfile()">Profile</button>-->
   </ion-navbar>
 </ion-header>
 
-<ion-content>
+<ion-content >
 
   <agm-map [latitude]="lat" [longitude]="lng" [disableDefaultUI]="false">
-    <agm-marker *ngFor="let item of drops" [latitude]="item.lat" [longitude]="item.lng" [visible]="true"></agm-marker>
+    <agm-marker *ngFor="let item of questionDrops" [latitude]="item.lat" [longitude]="item.lng" [visible]="true">
+      <agm-info-window>{{item.title}}</agm-info-window>
+    </agm-marker>
+    <agm-marker *ngFor="let item of experiencedDrops" [latitude]="item.lat" [longitude]="item.lng" [visible]="true">
+      <agm-info-window>{{item.title}}</agm-info-window>
+    </agm-marker>
   </agm-map>
+
+  <ion-list>
+    <ion-list-header>Question Drops</ion-list-header>
+    <ion-item *ngFor="let item of questionDrops">
+      <ion-icon ios="ios-help" md="md-help"></ion-icon>
+      {{item.title}}
+    </ion-item>
+  </ion-list>
+  <ion-list>
+    <ion-list-header>Experience Drops</ion-list-header>
+    <ion-item *ngFor="let item of experiencedDrops">
+      <ion-icon ios="ios-photos" md="md-photos"></ion-icon>
+      {{item.title}}
+    </ion-item>
+  </ion-list>
+
+
 
   <ion-fab right bottom>
     <button ion-fab color="light"><ion-icon name="add"></ion-icon></button>

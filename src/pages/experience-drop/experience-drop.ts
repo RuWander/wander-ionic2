@@ -2,16 +2,9 @@ import { Component } from '@angular/core';
 import {IonicPage, NavController, NavParams, ToastController} from 'ionic-angular';
 import {ExperienceDrop} from "../../models/experienceDrop";
 import {AngularFireAuth} from "angularfire2/auth";
-import {AngularFireDatabase} from "angularfire2/database";
+import {AngularFireDatabase} from "angularfire2/database-deprecated";
 import { Geolocation } from "@ionic-native/geolocation";
 import {HomePage} from "../home/home";
-
-/**
- * Generated class for the ExperienceDropPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({

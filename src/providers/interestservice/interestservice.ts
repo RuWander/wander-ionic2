@@ -11,19 +11,9 @@ import {UserInterests} from "../../models/interests";
 @Injectable()
 export class InterestserviceProvider {
 
-  private interests:string[] = [
-      'Architecture', 'Culture','Art', 'Streets', 'Music', 'Pubs'
+  private interests:string[] = ['Architecture', 'Culture','Art', 'Streets', 'Music', 'Pubs'];
 
-      // {interest: 'Architecture'},
-      // {interest: 'Culture'},
-      // {interest: 'Art'},
-      // {interest: 'Streets'},
-      // {interest: 'Music'},
-      // {interest: 'Pubs'}
-
-  ];
-
-  private userInterest: [] = [];
+  private userInterest: string[] = [];
 
   constructor() {
     console.log('Hello InterestserviceProvider Provider');

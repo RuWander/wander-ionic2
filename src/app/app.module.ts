@@ -17,12 +17,15 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { AngularFireModule } from "angularfire2";
 import { AngularFireAuthModule } from "angularfire2/auth";
-import { AngularFireDatabaseModule } from "angularfire2/database";
+import { AngularFireAuth } from "angularfire2/auth";
+import { AngularFireDatabaseModule } from "angularfire2/database-deprecated";
+import { AngularFireDatabase } from "angularfire2/database";
 import { AngularFireStorageModule } from "angularfire2/storage";
 import { Geolocation } from "@ionic-native/geolocation";
 import {FirebaseObjectObservable} from "angularfire2/database-deprecated";
 import { InterestserviceProvider } from '../providers/interestservice/interestservice';
 import { AgmCoreModule } from '@agm/core';
+import { ExperiencedropProvider } from '../providers/experiencedrop/experiencedrop';
 
 
 const firebaseAuth = {
@@ -53,7 +56,9 @@ const firebaseAuth = {
     IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(firebaseAuth),
     AngularFireAuthModule,
+
     AngularFireDatabaseModule,
+
     AngularFireStorageModule,
     AgmCoreModule.forRoot({
         apiKey: 'AIzaSyDIoNmzMp3Xn7wohUF-s_EsmC3xMJ-1zJE'
@@ -77,7 +82,8 @@ const firebaseAuth = {
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     Geolocation,
-    InterestserviceProvider
+    InterestserviceProvider,
+    ExperiencedropProvider
   ]
 })
 export class AppModule {}
