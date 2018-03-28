@@ -6,10 +6,11 @@ import { LoginPage } from "../login/login";
 import {AngularFireAuth} from "angularfire2/auth";
 import {AngularFireDatabase} from "angularfire2/database";
 import {Profile} from "../../models/profile";
-import {FirebaseObject} from "angularfire2/database";
+import {FirebaseListObservable, FirebaseObjectObservable} from "angularfire2/database-deprecated";
 
 import {QuestionDropPage} from "../question-drop/question-drop";
 import {ExperienceDropPage} from "../experience-drop/experience-drop";
+import {Observable} from "rxjs/Observable";
 
 
 @Component({
@@ -18,11 +19,20 @@ import {ExperienceDropPage} from "../experience-drop/experience-drop";
 })
 export class HomePage {
 //FirebaseObject<Profile>;
-  profileData: FirebaseObject<Profile>;
+  profileData: FirebaseObjectObservable<Profile>;
+  //profileD = {} as Object;
+    profileItems: Observable<any>;
 
   constructor(private afAuth: AngularFireAuth, private afDatabase: AngularFireDatabase, public navCtrl: NavController, private toast: ToastController) {
+      //this.afAuth.authState.take(1).subscribe(data => {
+          // if(data && data.email && data.uid) {
+          //     console.log(data.uid);
+          //     this.profileItems = afDatabase.object(`profiles/${data.uid}`);
+          //     console.log('this is profileItems');
+          //     console.log(this.profileItems)
+          // }});
 
-  }
+  };
 
   ionViewWillLoad(){
     console.log('the home page loaded');
@@ -32,7 +42,12 @@ export class HomePage {
             //     message: `Welcome To Wander ${data.email}`,
             //     duration:1000
             // }).present();
-            this.profileData = this.afDatabase.object(`profiles/${data.uid}`);
+            //this.profileD = this.afDatabase.object(`profiles/${data.uid}`);
+            //console.log(profileD);
+
+            let profileItems = this.afDatabase.object(`profiles/${data.uid}`);
+            console.log(profileItems);
+
         }else{
             this.toast.create({
                 message: `Could not find authentication details.`,

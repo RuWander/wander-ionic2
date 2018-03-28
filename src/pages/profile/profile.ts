@@ -4,6 +4,7 @@ import {AngularFireAuth} from "angularfire2/auth";
 import {AngularFireDatabase} from "angularfire2/database";
 import {Profile} from "../../models/profile";
 import {HomePage} from "../home/home";
+import {InterestserviceProvider} from "../../providers/interestservice/interestservice";
 
 /**
  * Generated class for the ProfilePage page.
@@ -19,9 +20,16 @@ import {HomePage} from "../home/home";
 })
 export class ProfilePage {
 
+  interest = [];
+
   profile = {} as Profile;
 
-  constructor(private afAuth: AngularFireAuth, private afDataBase: AngularFireDatabase, public navCtrl: NavController, public navParams: NavParams) {
+  constructor(private interestService: InterestserviceProvider ,private afAuth: AngularFireAuth, private afDataBase: AngularFireDatabase, public navCtrl: NavController, public navParams: NavParams) {
+  }
+
+  ionViewWillLoad(){
+    this.interest = this.interestService.getInterest();
+    console.log(this.interest)
   }
 
   createProfile(){

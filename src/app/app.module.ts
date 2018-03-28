@@ -20,6 +20,9 @@ import { AngularFireAuthModule } from "angularfire2/auth";
 import { AngularFireDatabaseModule } from "angularfire2/database";
 import { AngularFireStorageModule } from "angularfire2/storage";
 import { Geolocation } from "@ionic-native/geolocation";
+import {FirebaseObjectObservable} from "angularfire2/database-deprecated";
+import { InterestserviceProvider } from '../providers/interestservice/interestservice';
+
 
 const firebaseAuth = {
     apiKey: "AIzaSyBbhrW64iuPdIt5EgAkle5Y2iyFU3C4KGE",
@@ -51,6 +54,7 @@ const firebaseAuth = {
     AngularFireAuthModule,
     AngularFireDatabaseModule,
     AngularFireStorageModule,
+    //FirebaseObjectObservable
     //Geolocation
   ],
   bootstrap: [IonicApp],
@@ -70,7 +74,8 @@ const firebaseAuth = {
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    Geolocation
+    Geolocation,
+    InterestserviceProvider
   ]
 })
 export class AppModule {}
