@@ -11,7 +11,7 @@ import {UserInterests} from "../../models/interests";
 @Injectable()
 export class InterestserviceProvider {
 
-  private interests:[] = [
+  private interests:string[] = [
       'Architecture', 'Culture','Art', 'Streets', 'Music', 'Pubs'
 
       // {interest: 'Architecture'},

@@ -6,8 +6,11 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  <h2>Welcome to Wander!</h2>
+<ion-content>
+
+  <agm-map [latitude]="lat" [longitude]="lng" [disableDefaultUI]="false">
+    <agm-marker *ngFor="let item of drops" [latitude]="item.lat" [longitude]="item.lng" [visible]="true"></agm-marker>
+  </agm-map>
 
   <ion-fab right bottom>
     <button ion-fab color="light"><ion-icon name="add"></ion-icon></button>

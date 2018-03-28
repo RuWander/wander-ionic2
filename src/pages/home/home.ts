@@ -20,6 +20,21 @@ import {ProfilePage} from "../profile/profile";
 })
 export class HomePage {
 //FirebaseObject<Profile>;
+
+    private drops: any[] = [
+        {lat:-25.8127794,lng:28.122059499999998},
+        {lat:-25.1127794,lng:28.222059499999998},
+        {lat:-25.2127794,lng:28.322059499999998},
+        {lat:-25.3127794,lng:28.422059499999998},
+        {lat:-25.4127794,lng:28.522059499999998},
+        {lat:-25.5127794,lng:28.622059499999998},
+        {lat:-25.6127794,lng:28.722059499999998}
+
+    ];
+
+
+    lat: number = -25.8127794;
+    lng: number = 28.322059499999998;
   profileData: FirebaseObjectObservable<Profile>;
   //profileD = {} as Object;
     profileItems: Observable<any>;

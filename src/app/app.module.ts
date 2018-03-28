@@ -22,6 +22,7 @@ import { AngularFireStorageModule } from "angularfire2/storage";
 import { Geolocation } from "@ionic-native/geolocation";
 import {FirebaseObjectObservable} from "angularfire2/database-deprecated";
 import { InterestserviceProvider } from '../providers/interestservice/interestservice';
+import { AgmCoreModule } from '@agm/core';
 
 
 const firebaseAuth = {
@@ -54,8 +55,9 @@ const firebaseAuth = {
     AngularFireAuthModule,
     AngularFireDatabaseModule,
     AngularFireStorageModule,
-    //FirebaseObjectObservable
-    //Geolocation
+    AgmCoreModule.forRoot({
+        apiKey: 'AIzaSyDIoNmzMp3Xn7wohUF-s_EsmC3xMJ-1zJE'
+    })
   ],
   bootstrap: [IonicApp],
   entryComponents: [

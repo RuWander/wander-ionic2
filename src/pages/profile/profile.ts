@@ -44,10 +44,6 @@ export class ProfilePage {
   }
 
   createProfile(){
-    // for(let i = 0; i < this.userInterests.length; i++){
-    //     let userInt = this.profile.tags;
-    //     userInt.push(this.userInterests[i].interest);
-    // }
     this.profile.tags = this.userInterests;
     console.log(this.profile);
     this.afAuth.authState.take(1).subscribe(auth => {
