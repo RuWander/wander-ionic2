@@ -9,7 +9,7 @@ import {Observable} from "rxjs/Observable";
 export class ExperiencedropProvider {
 
   // private allExperienceDrops: Observable<any[]>;
-  items$: FirebaseListObservable<any[]>;
+  //items$: any[];
 
   constructor( private db: AngularFireDatabase) {
     console.log('Hello ExperiencedropProvider Provider');
@@ -17,13 +17,13 @@ export class ExperiencedropProvider {
 
   }
 
-  getAllExperiences(){
-    console.log('this was called but probably to soon');
-
-    this.items$ = this.db.list('experiencedrops/', { preserveSnapshot: true }).take(1);
-      console.log(this.items$);
-      return this.items$
-
-  }
+  // getAllExperiences(){
+  //   console.log('this was called but probably to soon');
+  //
+  //   this.items$ = this.db.list('experiencedrops/', { preserveSnapshot: true }).take(1);
+  //     console.log(this.items$);
+  //     return this.items$;
+  //
+  // }
 
 }

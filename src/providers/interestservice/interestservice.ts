@@ -27,7 +27,7 @@ export class InterestserviceProvider {
       return this.userInterest;
   }
 
-  addToUserInterest(item: UserInterests){
+  addToUserInterest(item){
       if(this.userInterest.indexOf(item) != -1){
           return;
       }

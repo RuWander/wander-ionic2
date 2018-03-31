@@ -2,10 +2,13 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { ToastController } from "ionic-angular";
 
+import {Profile} from "../../models/profile";
+import {ExperienceDrop} from "../../models/experienceDrop";
+
 import { LoginPage } from "../login/login";
 import {AngularFireAuth} from "angularfire2/auth";
 import {AngularFireDatabase} from "angularfire2/database-deprecated";
-import {Profile} from "../../models/profile";
+
 import {FirebaseListObservable, FirebaseObjectObservable} from "angularfire2/database-deprecated";
 
 import {QuestionDropPage} from "../question-drop/question-drop";
@@ -14,6 +17,10 @@ import {Observable} from "rxjs/Observable";
 import {ProfilePage} from "../profile/profile";
 import {ExperiencedropProvider} from "../../providers/experiencedrop/experiencedrop";
 
+import { Geolocation } from "@ionic-native/geolocation";
+import {async} from "@angular/core/testing";
+
+
 
 
 @Component({
@@ -21,19 +28,30 @@ import {ExperiencedropProvider} from "../../providers/experiencedrop/experienced
   templateUrl: 'home.html'
 })
 export class HomePage {
-    lat: number = -25.8127794;
-    lng: number = 28.322059499999998;
-    profileData: FirebaseObjectObservable<Profile>;
-    profileItems: Observable<any>;
-    experiencedDrops: FirebaseListObservable<any[]>;
-    questionDrops: FirebaseListObservable<any[]>;
+    lat: number; // = -25.8127794;
+    lng: number; //= 28.322059499999998;
+    //profileData: <any>;//Observable<any>//FirebaseObjectObservable<Profile>;
+    profileItems: Observable<Profile>;
+    experiencedDrops:any[];//FirebaseListObservable<ExperienceDrop>;//:Observable<any>
+    questionDrops: any[];//Observable<any>;//FirebaseListObservable<any>;
 
-  constructor(private experienceProvider: ExperiencedropProvider,private afAuth: AngularFireAuth, private afDatabase: AngularFireDatabase, public navCtrl: NavController, private toast: ToastController) {
+  constructor( private geolocation: Geolocation, private experienceProvider: ExperiencedropProvider,private afAuth: AngularFireAuth, private afDatabase: AngularFireDatabase, public navCtrl: NavController, private toast: ToastController) {
 
   };
 
   ionViewWillLoad(){
-    console.log('the home page loaded');
+      console.log('the home page loaded');
+
+
+
+      const result =  this.geolocation.getCurrentPosition().then(x => {
+          this.lat = x.coords.latitude;
+          this.lng = x.coords.longitude;
+      });
+
+
+
+
     this.afAuth.authState.take(1).subscribe(data => {
         if(data && data.email && data.uid){
 
@@ -51,7 +69,7 @@ export class HomePage {
     });
 
     //this.items = this.experienceProvider.getAllExperiences();
-      let items = this.afDatabase.list('/experiencedrops').subscribe(x => {
+      let items = this.afDatabase.list('/experiencedrops').subscribe((x:any[]) => {
           console.log(x);
           this.experiencedDrops = x;
       });

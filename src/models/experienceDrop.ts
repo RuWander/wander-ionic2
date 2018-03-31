@@ -4,5 +4,4 @@ export interface ExperienceDrop{
     lat: number;
     title: string;
     description: string;
-    file: any;
 }

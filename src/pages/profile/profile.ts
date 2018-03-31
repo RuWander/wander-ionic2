@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {AngularFireAuth} from "angularfire2/auth";
-import {AngularFireDatabase} from "angularfire2/database";
+import {AngularFireDatabase} from "angularfire2/database-deprecated";
 import {Profile} from "../../models/profile";
 import {HomePage} from "../home/home";
 import {InterestserviceProvider} from "../../providers/interestservice/interestservice";
